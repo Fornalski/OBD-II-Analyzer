@@ -1,12 +1,12 @@
 import time
-import obd
+from obd_connection.data_collecting import current_data, watching
 
 def run_till_i_stop(connection):
+    watching(connection)
     try:
         while True:
+            print(current_data)
             time.sleep(1)
-            rpm = connection.query(obd.commands.RPM)
-            print("current RPM:", rpm.value)
     except KeyboardInterrupt:
         print("\nProgram stopped due to use Ctrl+C")
     finally:
